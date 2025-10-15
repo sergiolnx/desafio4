@@ -24,7 +24,7 @@ jobs:
 
         - name: Gera lockfile
           working-directory: ./desafio4/aplicacao
-          run: npm install --package-lock-only --ignore-scripts
+          run: ls -la && npm install --package-lock-only --ignore-scripts
 
         - name: Instala Node e Testa
           working-directory: ./desafio4/aplicacao
