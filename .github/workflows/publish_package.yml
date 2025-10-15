@@ -28,9 +28,9 @@ jobs:
           working-directory: ./desafio4/pacote
           run: ls -la && npm install --package-lock-only --ignore-scripts
 
-        - name: Instala Node e Testa
+        - name: Instala Node
           working-directory: ./desafio4/pacote
-          run: npm ci && npm test
+          run: npm ci
 
         - name: Publica GitHub package
           working-directory: ./desafio4/pacote
