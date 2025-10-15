@@ -3,7 +3,7 @@ name: Publica Package da Aplicacao do Desafio4
 on:
   #workflow_dispatch
   push:
-    branches: [*]
+    branches: ["*"]
 #    tags: ["v*"]
 
 permissions:
