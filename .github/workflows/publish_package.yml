@@ -25,14 +25,14 @@ jobs:
             registry-url: 'https://npm.pkg.github.com'
 
         - name: Gera lockfile
-          working-directory: ./desafio4/aplicacao
+          working-directory: ./desafio4/pacote
           run: ls -la && npm install --package-lock-only --ignore-scripts
 
         - name: Instala Node e Testa
-          working-directory: ./desafio4/aplicacao
+          working-directory: ./desafio4/pacote
           run: npm ci && npm test
 
         - name: Publica GitHub package
-          working-directory: ./desafio4/aplicacao
+          working-directory: ./desafio4/pacote
           run: npm publish
           
