@@ -1,8 +1,9 @@
 name: Publica Package da Aplicacao do Desafio4
 
 on:
-  push:
-    tags: ["v*"]
+  workflow_dispatch
+#  push:
+#    tags: ["v*"]
 
 permissions:
   contents: read
