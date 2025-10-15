@@ -8,12 +8,8 @@ permissions:
   contents: read
   packages: write
 
-env:
-    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    NOME_ALUNO: ${{ vars.NOME_ALUNO }}
-
 jobs:
-  publica:
+  publica-package:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v4
@@ -24,14 +20,14 @@ jobs:
             registry-url: 'https://npm.pkg.github.com'
 
         - name: Gera lockfile
-          working-directory: aplicacao
+          working-directory: ./desafio4/aplicacao
           run: npm install --package-lock-only --ignore-scripts
 
         - name: Instala Node e Testa
-          working-directory: aplicacao
+          working-directory: ./desafio4/aplicacao
           run: npm ci && npm test
 
         - name: Publica GitHub package
-          working-directory: aplicacao
+          working-directory: ./desafio4/aplicacao
           run: npm publish
           

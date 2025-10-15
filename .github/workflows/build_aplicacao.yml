@@ -1,5 +1,9 @@
 name: Build da Aplicacao do Desafio4
 
+
+#Build image from Dockerfile
+#push to gh registry
+
 on:
   workflow_dispatch
 
@@ -9,7 +13,6 @@ permissions:
 
 env:
     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    NOME_ALUNO: ${{ vars.NOME_ALUNO }}
 
 jobs:
   build:
@@ -23,13 +26,9 @@ jobs:
             registry-url: 'https://npm.pkg.github.com'
 
         - name: Gera lockfile
-          working-directory: aplicacao
+          working-directory: ./desafio4/aplicacao
           run: npm install --package-lock-only --ignore-scripts
 
         - name: Instala Node e Testa
-          working-directory: aplicacao
+          working-directory: ./desafio4/aplicacao
           run: npm ci
-
-        - name: Smoke test
-          working-directory: aplicacao
-          run: node -e "console.log, require('@sergiolnx/giropops-strigus-girus')(${env.NOME_ALUNO}))"

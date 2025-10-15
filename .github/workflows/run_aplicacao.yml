@@ -1,0 +1,25 @@
+name: Execute Aplicacao do Desafio4
+
+
+on:
+  workflow_dispatch
+
+permissions:
+  contents: read
+  packages: read
+
+env:
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NOME_ALUNO: ${{ vars.NOME_ALUNO }}
+
+jobs:
+    executa-image:
+        runs-on: ubuntu-latest
+        steps:
+            
+
+
+# to execute  docker run -d -e  NOME_ALUNO=vars.NOME_ALUNO -p 3000:3000 <image>
+
+
+# curl http://localhost:3000/
