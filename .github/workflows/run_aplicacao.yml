@@ -10,7 +10,7 @@ permissions:
 env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
   GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:latest"
+  IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:57b63f37df46947a886042470254a115a26f721a"
 
 jobs:
   roda-aplicacao:
