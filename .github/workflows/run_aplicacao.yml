@@ -1,4 +1,4 @@
-name: Execute Aplicacao do Desafio4
+name: Executa Aplicacao do Desafio4
 
 on:
   workflow_dispatch
@@ -10,7 +10,7 @@ permissions:
 env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
   GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:e8a09d37d86ffc7c518a0211cb96bc42690d7ab8"
+  IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:latest"
 
 jobs:
   roda-aplicacao:
