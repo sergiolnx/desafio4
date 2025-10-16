@@ -1,17 +1,19 @@
-name: Build da Aplicacao do Desafio4
+name: Executa Aplicacao do Desafio4
 
 on:
   workflow_dispatch
 
 permissions:
   contents: read
-  packages: write
+  packages: read
 
-env:  
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
   GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:latest"
 
 jobs:
-  build:
+  roda-aplicacao:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v4
@@ -22,11 +24,6 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}  
         
-        - name: Build Image
+        - name: Roda Aplicacao
           run: |
-            IMAGE=ghcr.io/${{ github.repository }}/desafio4:${{ github.sha }}
-            docker build \
-              --build-arg GH_PACKAGES_TOKEN \
-              -t "$IMAGE" \
-              desafio4/aplicacao
-            docker image push "$IMAGE"
+            docker run -d -e  NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ${{ env.IMAGE_NAME }} && curl http://localhost:3000/
