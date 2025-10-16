@@ -8,7 +8,7 @@ RUN npm config set //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN \
 
 WORKDIR /app
 COPY desafio4/aplicacao/package*.json ./
-COPY desafio4/aplicacao/src ./
+COPY desafio4/aplicacao/src/* ./src/
 RUN npm install --omit=dev
 
 COPY . .
