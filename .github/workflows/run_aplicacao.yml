@@ -10,7 +10,6 @@ permissions:
 env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
   GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NOME_ALUNO: ${{ vars.NOME_ALUNO }}
   IMAGE_NAME: "ghcr.io/sergiolnx/desafio4/desafio4:e8a09d37d86ffc7c518a0211cb96bc42690d7ab8"
 
 jobs:
@@ -27,7 +26,7 @@ jobs:
         
         - name: Build Image
           run: |
-            docker run -d -e  NOME_ALUNO=vars.NOME_ALUNO -p 3000:3000 ${{ env.IMAGE_NAME }}
+            docker run -d -e  NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ${{ env.IMAGE_NAME }}
 
         - name: Testa Aplicacao
           run: curl http://localhost:3000/
