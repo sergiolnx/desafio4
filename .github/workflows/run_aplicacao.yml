@@ -24,9 +24,6 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}  
         
-        - name: Build Image
+        - name: Roda Aplicacao
           run: |
-            docker run -d -e  NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ${{ env.IMAGE_NAME }}
-
-        - name: Testa Aplicacao
-          run: curl http://localhost:3000/
+            docker run -d -e  NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ${{ env.IMAGE_NAME }} && curl http://localhost:3000/
