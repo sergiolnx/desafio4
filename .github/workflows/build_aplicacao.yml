@@ -33,5 +33,5 @@ jobs:
             docker build \
               --build-arg GH_PACKAGES_TOKEN \
               -t "$IMAGE" \
-              aplicacao
+              desafio4/aplicacao
             docker image push "$IMAGE"
