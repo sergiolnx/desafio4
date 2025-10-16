@@ -7,7 +7,8 @@ RUN npm config set //npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN \
  && npm config set @sergiolnx:registry=https://npm.pkg.github.com
 
 WORKDIR /app
-COPY package*.json ./
+COPY aplicacao/package*.json ./
+COPY aplicacao/src ./
 RUN npm install --omit=dev
 
 COPY . .

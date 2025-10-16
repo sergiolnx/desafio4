@@ -9,10 +9,11 @@ on:
 
 permissions:
   contents: read
-  packages: read
+  packages: write
 
 env:
-    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+  GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
@@ -20,15 +21,17 @@ jobs:
     steps:
         - uses: actions/checkout@v4
 
-        - uses: actions/setup-node@v4
+        - uses: docker/login-action@v3
           with:
-            node-version: '20'
-            registry-url: 'https://npm.pkg.github.com'
-
-        - name: Gera lockfile
-          working-directory: ./desafio4/aplicacao
-          run: npm install --package-lock-only --ignore-scripts
-
-        - name: Instala Node e Testa
-          working-directory: ./desafio4/aplicacao
-          run: npm ci
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}  
+        
+        - name: Build Image
+          run: |
+            IMAGE=ghcr.io/${{ github.repository }}/desafio4:${{ github.sha }}
+            docker build \
+              --build-arg GH_PACKAGES_TOKEN \
+              -t "$IMAGE" \
+              aplicacao
+            docker image push "$IMAGE"
