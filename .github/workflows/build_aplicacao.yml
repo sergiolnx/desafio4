@@ -23,6 +23,7 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}  
         
         - name: Build Image
+          working-directory: ./desafio4/aplicacao
           run: |
             ls -la
             pwd
@@ -30,5 +31,5 @@ jobs:
             docker build \
               --build-arg GH_PACKAGES_TOKEN \
               -t "$IMAGE" \
-              desafio4/aplicacao
+              .
             docker image push "$IMAGE"
