@@ -28,5 +28,18 @@ jobs:
           run: docker run -d -e  NOME_ALUNO=${{ vars.NOME_ALUNO }} -p 3000:3000 ${{ env.IMAGE_NAME }}
 
         - name: Test Aplicacao
-          run: curl http://localhost:3000/
+          run: |
+             for i in {1..10}; do
+               if curl -s http://localhost:3000/; then
+                 echo "App is up!"
+                 exit 0
+                else
+                    echo "Waiting for app..."
+                    sleep 3
+                fi
+             done
+             echo "App did not start in time"
+             exit 1
+          
+          curl http://localhost:3000/
 
