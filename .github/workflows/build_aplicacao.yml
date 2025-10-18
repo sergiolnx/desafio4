@@ -1,7 +1,10 @@
 name: Build da Aplicacao do Desafio4
 
 on:
-  workflow_dispatch
+  workflow_run:
+    workflows: [Publica Package da Aplicacao do Desafio4]
+    types:
+      - completed
 
 permissions:
   contents: read
