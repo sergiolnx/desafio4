@@ -39,7 +39,4 @@ jobs:
                 fi
              done
              echo "App did not start in time"
-             exit 1
-          
-          curl http://localhost:3000/
-
+             exit 1 
